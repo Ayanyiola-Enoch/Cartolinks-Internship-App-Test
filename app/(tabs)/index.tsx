@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { X, ChevronRight, Sparkles } from 'lucide-react-native';
+import { StatusBar } from 'expo-status-bar';
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,8 +27,8 @@ const posterTypes = [
     id: 2,
     title: 'Up to\n50% Off',
     category: 'Promotion',
-    background: '#FFD700',
-    textColor: '#000',
+    background: '#ffd900a9',
+    textColor: '#fff',
   },
   {
     id: 3,
@@ -59,11 +60,15 @@ export default function SmartScript() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <StatusBar style="light" />
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.closeButton}>
-            <X size={24} color="#fff" />
+            <X size={40} color="#fff" />
           </TouchableOpacity>
         </View>
 
@@ -71,15 +76,27 @@ export default function SmartScript() {
         <View style={styles.tabContainer}>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'smart' && styles.activeTab]}
-            onPress={() => setActiveTab('smart')}>
-            <Text style={[styles.tabText, activeTab === 'smart' && styles.activeTabText]}>
+            onPress={() => setActiveTab('smart')}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === 'smart' && styles.activeTabText,
+              ]}
+            >
               Smart script
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'advanced' && styles.activeTab]}
-            onPress={() => setActiveTab('advanced')}>
-            <Text style={[styles.tabText, activeTab === 'advanced' && styles.activeTabText]}>
+            onPress={() => setActiveTab('advanced')}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === 'advanced' && styles.activeTabText,
+              ]}
+            >
               Advanced script
             </Text>
           </TouchableOpacity>
@@ -91,11 +108,12 @@ export default function SmartScript() {
         </Text>
 
         {/* Poster Types */}
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.posterContainer}
-          contentContainerStyle={styles.posterContent}>
+          contentContainerStyle={styles.posterContent}
+        >
           {posterTypes.map((poster) => (
             <TouchableOpacity
               key={poster.id}
@@ -103,8 +121,14 @@ export default function SmartScript() {
                 styles.posterCard,
                 selectedPoster === poster.id && styles.selectedPosterCard,
               ]}
-              onPress={() => setSelectedPoster(poster.id)}>
-              <View style={[styles.posterImage, { backgroundColor: poster.background }]}>
+              onPress={() => setSelectedPoster(poster.id)}
+            >
+              <View
+                style={[
+                  styles.posterImage,
+                  { backgroundColor: poster.background },
+                ]}
+              >
                 {poster.badge && (
                   <View style={styles.badge}>
                     <Text style={styles.badgeText}>{poster.badge}</Text>
@@ -114,7 +138,8 @@ export default function SmartScript() {
                   style={[
                     styles.posterTitle,
                     { color: poster.textColor || '#fff' },
-                  ]}>
+                  ]}
+                >
                   {poster.title}
                 </Text>
               </View>
@@ -143,7 +168,7 @@ export default function SmartScript() {
         {/* Settings */}
         <View style={styles.settingsContainer}>
           <Text style={styles.settingsTitle}>Settings</Text>
-          
+
           <TouchableOpacity style={styles.settingItem}>
             <Text style={styles.settingLabel}>Size</Text>
             <View style={styles.settingValue}>
@@ -169,7 +194,8 @@ export default function SmartScript() {
             colors={['#4A90E2', '#357ABD']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={styles.generateGradient}>
+            style={styles.generateGradient}
+          >
             <Sparkles size={20} color="#fff" />
             <Text style={styles.generateText}>Generate</Text>
           </LinearGradient>
@@ -197,6 +223,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    paddingTop: 40,
   },
   scrollView: {
     flex: 1,
@@ -213,15 +240,20 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     marginBottom: 30,
   },
   tab: {
     paddingBottom: 10,
-    marginRight: 30,
+    marginRight: 20,
+    width: '50%',
+    alignItems: 'center',
   },
   activeTab: {
     borderBottomWidth: 2,
+    width: '50%',
     borderBottomColor: '#4A90E2',
   },
   tabText: {
