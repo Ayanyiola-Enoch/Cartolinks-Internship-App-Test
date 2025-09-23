@@ -9,8 +9,7 @@ import {
   SafeAreaView,
   Dimensions,
   Image,
-  Alert
-
+  Alert,
 } from 'react-native';
 import { X, ChevronRight } from 'lucide-react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -205,6 +204,20 @@ export default function SmartScript() {
           <Text style={styles.generateText}>Generate</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Bottom Branding */}
+      <View style={styles.brandingContainer}>
+        <View style={styles.brandingContent}>
+          <View style={styles.capCutBrand}>
+            <View style={styles.capCutIcon}>
+              <Image source={require('../../assets/images/mobbin.svg')} style={{tintColor: '#fff'}} />
+            </View>
+            <Text style={styles.capCutText}>CapCut</Text>
+          </View>
+          <Text style={styles.curatedText}>curated by</Text>
+          <Text style={styles.mobbinText}>Mobbin</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -390,5 +403,46 @@ const styles = StyleSheet.create({
   generateText: {
     fontSize: 18,
     fontWeight: '600',
+  },
+
+  brandingContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderTopWidth: 1,
+    borderTopColor: '#333',
+  },
+  brandingContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  capCutBrand: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  capCutIcon: {
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  capCutIconText: {
+    fontSize: 16,
+  },
+  capCutText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  curatedText: {
+    fontSize: 14,
+    color: '#666',
+  },
+  mobbinText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
