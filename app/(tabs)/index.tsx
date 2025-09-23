@@ -8,10 +8,14 @@ import {
   TextInput,
   SafeAreaView,
   Dimensions,
+  Image,
+  Alert
+
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { X, ChevronRight, Sparkles } from 'lucide-react-native';
+import { X, ChevronRight } from 'lucide-react-native';
 import { StatusBar } from 'expo-status-bar';
+
+// const { Alert } = require('react-native');
 
 const { width, height } = Dimensions.get('window');
 
@@ -160,7 +164,8 @@ export default function SmartScript() {
           />
           <TouchableOpacity style={styles.imageButton}>
             <View style={styles.imageIcon}>
-              <Text style={styles.imageIconText}>🖼️</Text>
+              {/* <Text style={styles.imageIconText}>🖼️</Text> */}
+              <Image source={require('../../assets/images/gallery_add2.png')} />
             </View>
           </TouchableOpacity>
         </View>
@@ -189,31 +194,16 @@ export default function SmartScript() {
 
       {/* Generate Button */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.generateButton}>
-          <LinearGradient
-            colors={['#4A90E2', '#357ABD']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.generateGradient}
-          >
-            <Sparkles size={20} color="#fff" />
-            <Text style={styles.generateText}>Generate</Text>
-          </LinearGradient>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.generateButton}
+          onPress={() => {
+            Alert.alert('Poster Generated', 'Thank you! Enjoy your poster.');
+          }}
+        >
+          <Image source={require('../../assets/images/ai_icon2.png')} />
+          <Text style={styles.generateText}>Generate</Text>
         </TouchableOpacity>
-      </View>
-
-      {/* Bottom Branding */}
-      <View style={styles.brandingContainer}>
-        <View style={styles.brandingContent}>
-          <View style={styles.capCutBrand}>
-            <View style={styles.capCutIcon}>
-              <Text style={styles.capCutIconText}>📐</Text>
-            </View>
-            <Text style={styles.capCutText}>CapCut</Text>
-          </View>
-          <Text style={styles.curatedText}>curated by</Text>
-          <Text style={styles.mobbinText}>Mobbin</Text>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -388,59 +378,17 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   generateButton: {
-    borderRadius: 25,
-    overflow: 'hidden',
-  },
-  generateGradient: {
+    borderRadius: 11,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 18,
+    backgroundColor: 'white',
+    paddingVertical: 12,
+    marginBottom: 11,
     gap: 8,
   },
   generateText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#fff',
-  },
-  brandingContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderTopWidth: 1,
-    borderTopColor: '#333',
-  },
-  brandingContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-  },
-  capCutBrand: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-  },
-  capCutIcon: {
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  capCutIconText: {
-    fontSize: 16,
-  },
-  capCutText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  curatedText: {
-    fontSize: 14,
-    color: '#666',
-  },
-  mobbinText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
   },
 });
